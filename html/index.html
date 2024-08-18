@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>音乐播放器</title>
+        <!--引入jQuery文件-->
+        <script src="../js/jquery.js"></script>
+        <!--引入flexible文件-->
+        <script src="../js/flexible.js"></script>
+        <!--引入bootstrap的JavaScript文件-->
+        <script src="../js/bootstrap.js"></script>
+        <!--引入axios库文件-->
+        <script src="../js/axios.js"></script>
+        <!--引入自定义JavaScript文件-->
+        <script src="../js/index.js"></script>
+        <!--引入normalize文件-->
+        <link type="text/css" rel="stylesheet" href="../css/normalize.css">
+        <!--引入bootstrap的样式表-->
+        <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
+        <!--引入自定义样式表-->
+        <link type="text/css" rel="stylesheet" href="../css/index.css">
+        <!--不支持JavaScript设置-->
+        <noscript>您的浏览器不支持JavaScript</noscript>
+    </head>
+    <body>
+        <!--背景图片部分-->
+        <div id="bgImage" class="bg"></div>
+        <!--播放器主体部分-->
+        <div class="player_main">
+            <!--唱片与歌曲信息及歌词部分 -->
+            <div class="player_images_lyrics">
+                <!--唱片部分-->
+                <div class="player_images">
+                    <div class="disk">
+                        <img class="paused" id="disk_image" title="" src="" style="display: block">
+                    </div>
+                </div>
+                <!--歌词部分-->
+                <div class="player_lyrics">
+                    <div class="info">
+                        <!--歌曲标题与歌手-->
+                        <header class="title">
+                            <div class="music_name"></div>
+                            <div class="music_singer"></div>
+                        </header>
+                        <!--正式歌词部分-->
+                        <div id="lyrics" class="lyrics">
+                            <ul id="lyrics_contents" class="lyrics_contents">
+                                <!--渲染生成歌词-->
+                                <!--<li class="sentence" data-order="0"></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--控制部分-->
+            <div class="player_control">
+                <!--音乐源-->
+                <audio id="player" controls="controls" style="position: absolute; visibility: hidden">
+                    <source src="">
+                </audio>
+                <!--进度条-->
+                <div class="progress-bar">
+                    <div id="ruler" class="progress ruler" role="progressbar" aria-label="Animated striped example"
+                         aria-valuenow="75"
+                         aria-valuemin="0" aria-valuemax="100">
+                        <div id="cursor" class="progress-bar progress-bar-striped progress-bar-animated cursor"></div>
+                    </div>
+                </div>
+                <!--控制按钮-->
+                <div class="button_table">
+                    <!--时间进度-->
+                    <div class="time">
+                        <span id="current"></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span id="total"></span>
+                    </div>
+                    <!--核心控制组-->
+                    <div id="center_control">
+                        <!--状态按钮（默认单曲循环）-->
+                        <div id="status_btn" class="icon_status_btn model1"></div>
+                        <!--上一首-->
+                        <div id="prev_btn" class="icon_prev_btn"></div>
+                        <!--播放按钮-->
+                        <div id="play_btn" class="icon_play_btn"></div>
+                        <!--下一首-->
+                        <div id="next_btn" class="icon_next_btn"></div>
+                        <!--音量控制部分-->
+                        <div id="loudness_bar" class="loudness_bar">
+                            <div id="loudness_icon" class="open_voice"></div>
+                            <input type="range" class="loudness_ruler_bar" value="20" id="customRange1">
+                        </div>
+                    </div>
+                    <!--列表与倍速-->
+                    <div class="list_continue">
+                        <!--倍速模块-->
+                        <div id="speed">1.0X</div>
+                        <!--歌曲列表模块（按钮）-->
+                        <button class=" btn-primary" id="music_list" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight"
+                                aria-controls="offcanvasRight"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--歌单模块-->
+        <div class="offcanvas offcanvas-end right_nav" tabindex="-1" id="offcanvasRight"
+             aria-labelledby="offcanvasRightLabel">
+            <!--歌单标题-->
+            <div class="offcanvas-header nav_header">
+                <h5 class="offcanvas-title play_list" id="offcanvasRightLabel">播放队列</h5>
+            </div>
+            <!--歌曲列表-->
+            <div class="offcanvas-body music_list_nav" style="padding-top: 0.1rem!important;">
+                <div id="list-group" class="list-group"
+                     style="width: 100%!important; height: 100%!important; border-radius: 0!important;">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
